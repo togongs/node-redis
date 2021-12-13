@@ -14,6 +14,17 @@ const router = require("./routes");
 //routing
 app.use("/", router);
 
+//express session
+const sessionMiddleware = session({
+  resave: false,
+  saveUninitialized: false,
+  secret: process.env.COOKIE_SECRET,
+  cookie: {
+    httpOnly: true,
+    secure: false,
+  },
+});
+
 //errorHandler
 app.use((err, req, res, next) => {
   //   res.locals.message = err.message;
